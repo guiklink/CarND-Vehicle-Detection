@@ -1,9 +1,4 @@
-##Writeup Template
-###You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
----
-
-**Vehicle Detection Project**
+# Vehicle Detection Project
 
 The goals / steps of this project are the following:
 
@@ -18,21 +13,7 @@ The goals / steps of this project are the following:
 [image1]: ./output_images/car_not_car.png
 [image2]: ./output_images/hog.png
 [image3]: ./output_images/sliding_windows.png
-[image4]: ./examples/sliding_window.jpg
-[image5]: ./examples/bboxes_and_heat.png
-[image6]: ./examples/labels_map.png
-[image7]: ./examples/output_bboxes.png
-[video1]: ./project_video.mp4
-
-## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
-###Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
-
----
-###Writeup / README
-
-####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  [Here](https://github.com/udacity/CarND-Vehicle-Detection/blob/master/writeup_template.md) is a template writeup for this project you can use as a guide and a starting point.  
-
-You're reading it!
+[image4]: ./output_images/heat_map.png
 
 ## Contents
 * [Project Video](https://vimeo.com/233159995)
@@ -42,9 +23,8 @@ You're reading it!
 * [auxiliary.py](auxiliary.py): contains all the functions used in the project.
 * [model.p](model.p): a pickle file containing the trained model and the parameters used.
 
-### Histogram of Oriented Gradients (HOG)
+### 1. Histogram of Oriented Gradients (HOG)
 
-####1. Explain how (and identify where in your code) you extracted HOG features from the training images.
 To train a [Support Vector Classification (SVC)]() I used a large set of `vehicle` and `non-vehicle` images. I have attached an example bellow of `vehicle (left)` and `non-vehicle (right)` classes:
 
 ![alt text][image1]
@@ -77,11 +57,11 @@ Here is an example using the `HSV` color space and HOG parameters of `orientatio
 ![alt text][image2]
 
 
-####2. Color Space and HOG Parameters
+### 2. Color Space and HOG Parameters
 
 I tried various combinations of parameters and...
 
-####3. Training the SVC
+### 3. Training the SVC
 
 I trained a linear SVM (or in this case SVC) in [Train_Model](Train_Model.ipynb) and saved it as a pickle in [model.p](model.p). 
 
@@ -102,9 +82,7 @@ The pickle contains the model and all the parameters used for creating the train
  'spatial_size': (16, 16)}
 ```
 
-###Sliding Window Search
-
-####1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
+### 4. Sliding Window Search
 
 Now that I have a model that is able to classify boxes of images, the next step of my approach was to segment each frame of the video into windows and feed them into my classifier. The code for that can be found in [auxiliary.py](auxiliary.py) and seem bellow:
 
@@ -198,6 +176,7 @@ def find_cars(img, ystart, ystop, scale, svc, X_scaler, orient, pix_per_cell, ce
 
 **PS**: This parameters need to be set the same way they were for training the classifier.
 
+
 ![alt text][image3]
 
 ####2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
@@ -216,7 +195,7 @@ I recorded the positions of positive detections in each frame of the video.  Fro
 Here's an example result showing the heat map from a series of frames of video around the image with detection showed before. Using the heat map strategy, the result of `scipy.ndimage.measurements.label()` and the bounding boxes then overlaid on the last frame of video:
 
 ### Here the resulting bounding boxes are drawn onto the last frame in a 10 frames series:
-![alt text][image7]
+![alt text][image4]
 
 
 
