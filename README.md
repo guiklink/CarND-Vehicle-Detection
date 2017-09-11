@@ -13,7 +13,10 @@ The goals / steps of this project are the following:
 [image1]: ./output_images/car_not_car.png
 [image2]: ./output_images/hog.png
 [image3]: ./output_images/sliding_windows.png
-[image4]: ./output_images/heat_map.png
+[image4]: ./output_images/sliding_windows_HSV.png.png
+[image5]: ./output_images/sliding_windows_imp.png
+[image6]: ./output_images/heat_map.png
+
 
 ## Contents
 * [Project Video](https://vimeo.com/233159995)
@@ -21,7 +24,8 @@ The goals / steps of this project are the following:
 * [Video_Pipeline](Video_Pipeline.ipynb): notebook used to produce the output video.
 * [Trials](Trials.ipynb): notebook used to test different parameters for training.
 * [auxiliary.py](auxiliary.py): contains all the functions used in the project.
-* [model.p](model.p): a pickle file containing the trained model and the parameters used.
+* [model.p](model.p): a pickle file containing the trained model for HSV images and the parameters used.
+* [model_YCrCb.p](model_YCrCb.p): a pickle file containing the trained model for YCrCb and the parameters used.
 
 ### 1. Histogram of Oriented Gradients (HOG)
 
@@ -179,25 +183,22 @@ def find_cars(img, ystart, ystop, scale, svc, X_scaler, orient, pix_per_cell, ce
 
 ![alt text][image3]
 
-####2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
+#### HSV vs. YCrCb
 
-Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
+Through experimentation, I ultimately searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here you can see the two best performing color schemes ```HSV (Left)``` and ```YCrCb (right)``` :
 
-![alt text][image4]
+![alt text][image4] ![alt text][image5]
+
 ---
 
 ### Video Implementation
-
-####1. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
 I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.  
 
 Here's an example result showing the heat map from a series of frames of video around the image with detection showed before. Using the heat map strategy, the result of `scipy.ndimage.measurements.label()` and the bounding boxes then overlaid on the last frame of video:
 
 ### Here the resulting bounding boxes are drawn onto the last frame in a 10 frames series:
-![alt text][image4]
-
-
+![alt text][image6]
 
 ---
 

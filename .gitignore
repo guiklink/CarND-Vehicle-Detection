@@ -1,3 +1,4 @@
 .ipynb_checkpoints/*
 Data/*
 test_images/Sample/*
+*.mp4
