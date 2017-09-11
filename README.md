@@ -20,7 +20,8 @@ The goals / steps of this project are the following:
 ## Contents
 * [Project Video](https://vimeo.com/233159995)
 * [Train_Model](Train_Model.ipynb): notebook used for training a SVC.
-* [Video_Pipeline](Video_Pipeline.ipynb): notebook used to produce the output video.
+* [Video_Pipeline_YCrCb](Video_Pipeline_YCrCb.ipynb): notebook used to produce HSV [final video](https://vimeo.com/233159995).
+* [Video_Pipeline_YCrCb](Video_Pipeline_YCrCb.ipynb): notebook used to produce YCrCb output video.
 * [Trials](Trials.ipynb): notebook used to test different parameters for training.
 * [auxiliary.py](auxiliary.py): contains all the functions used in the project.
 * [model.p](model.p): a pickle file containing the trained model for HSV images and the parameters used.
@@ -184,7 +185,7 @@ def find_cars(img, ystart, ystop, scale, svc, X_scaler, orient, pix_per_cell, ce
 
 #### HSV vs. YCrCb
 
-Through experimentation, I ultimately searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here you can see the two best performing color schemes ```HSV (Left)``` and ```YCrCb (right)``` :
+Through experimentation, I searched on different scales using YCrCb and HSV 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result. YCrCb provides better detection squares than HSV, however HSV gets less false positives. Therefore, my ultimate choice was HSV. Here you can see the two color schemes for comparison ```HSV (Left)``` and ```YCrCb (right)``` :
 
 ![alt text][image4] ![alt text][image3]
 
