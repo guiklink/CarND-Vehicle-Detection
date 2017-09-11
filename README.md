@@ -180,13 +180,13 @@ def find_cars(img, ystart, ystop, scale, svc, X_scaler, orient, pix_per_cell, ce
 **PS**: This parameters need to be set the same way they were for training the classifier.
 
 
-![alt text][image3]
+![alt text][image5]
 
 #### HSV vs. YCrCb
 
 Through experimentation, I ultimately searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here you can see the two best performing color schemes ```HSV (Left)``` and ```YCrCb (right)``` :
 
-![alt text][image4] ![alt text][image5]
+![alt text][image4] ![alt text][image3]
 
 ---
 
