@@ -2,3 +2,4 @@
 Data/*
 test_images/Sample/*
 *.mp4
+__pycache__/*
